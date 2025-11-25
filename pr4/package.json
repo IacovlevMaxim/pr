@@ -1,0 +1,25 @@
+{
+  "name": "pr4-ts",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p .",
+    "start": "node dist/server.js",
+    "dev": "ts-node src/server.ts",
+    "integration": "ts-node src/integration_test.ts",
+    "test": "ts-node src/integration_test.ts",
+    "docker-build": "docker build -t pr4-ts .",
+    "docker-leader": "docker run --rm -e ROLE=leader -e PORT=5000 -e FOLLOWERS=localhost:5001,localhost:5002 -p 5000:5000 pr4-ts",
+    "docker-follower": "docker run --rm -e ROLE=follower -e PORT=5001 -p 5001:5000 pr4-ts"
+  },
+  "dependencies": {
+    "axios": "^1.5.0",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  }
+}
